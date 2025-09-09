@@ -6,10 +6,9 @@ on:
 
 jobs:
   redeploy_everything:
+    runs-on: ubuntu-latest
     name: Deploying everything to the staging cluster
-
     steps:
-      - name: SSH Into server
       - run: |
           echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key 
           ssh -i ~/ssh_key root@64.227.147.124
@@ -19,6 +18,6 @@ jobs:
           pm2 restart fe-server
           pm2 restart http-server
           pm2 restart ws-server
-          
+
 
     
